@@ -23,10 +23,9 @@ import rehypeExternalLinks from "rehype-external-links";
 import rehypeKatex from "rehype-katex";
 import rehypeUnwrapImages from "rehype-unwrap-images";
 
-const BASE_PATH = process.env.BASE_PATH || "/";
-const START_URL = BASE_PATH.endsWith("/") ? BASE_PATH : `${BASE_PATH}/`;
+const BASE_PATH = "/";
+const START_URL = BASE_PATH;
 
-// Güvenlik Katmanı: rawFonts için güvenli dizin çözümü (CWD yerine dosya tabanlı)
 const CONFIG_DIR = path.dirname(fileURLToPath(import.meta.url));
 
 export default defineConfig({
@@ -97,7 +96,6 @@ function rawFonts(ext: string[]) {
                     throw new Error(`[SECURITY] Path traversal blocked: ${real}`);
                 }
 
-                // Zafiyet Kapatıldı (Finding #7): TOCTOU engellemek için Atomik okuma
                 const fd = openSync(real, 'r');
                 try {
                     const { size } = fstatSync(fd);
