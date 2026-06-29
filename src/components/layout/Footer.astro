@@ -1,0 +1,88 @@
+---
+import { siteConfig } from "@/site-config";
+import { withBase } from "@/utils/path";
+
+const year = new Date().getFullYear();
+---
+
+<footer class="site-footer">
+    <div class="footer-inner">
+
+        <span class="copyright">
+            &copy; {year} {siteConfig.author}
+        </span>
+
+        <span class="site-credit">
+            Powered by&nbsp;
+            <a href="https://www.cingozce.net" target="_blank" rel="noopener">
+                CINGOZCE.NET
+            </a>
+        </span>
+
+        <a href={withBase("/rss.xml")} class="rss-link">RSS</a>
+
+    </div>
+</footer>
+
+<style>
+.site-footer {
+    border-top: 1px solid var(--hairline);
+    padding-top: 22px;
+    display: flex;
+    justify-content: center;
+    font-family: var(--font-sans);
+    font-size: 12.5px;
+    color: hsl(var(--theme-text) / 0.72);
+}
+
+.footer-inner {
+    width: 100%;
+    max-width: 1100px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+}
+
+.site-credit {
+    position: absolute;
+    left: 50%;
+    transform: translateX(calc(-50% + 4px)); /* hafif sağ optik düzeltme */
+    white-space: nowrap;
+}
+
+.site-credit a {
+    color: inherit;
+    text-decoration: none;
+    border-bottom: 1px dotted hsl(var(--theme-text) / 0.35);
+    transition: color 0.2s ease, border-color 0.2s ease;
+}
+
+.site-credit a:hover {
+    color: hsl(var(--theme-accent));
+    border-bottom-color: currentColor;
+}
+
+.rss-link {
+    color: hsl(var(--theme-text-muted));
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.rss-link:hover {
+    color: hsl(var(--theme-accent));
+}
+
+@media (max-width: 420px) {
+    .footer-inner {
+        flex-direction: column;
+        gap: 10px;
+        position: static;
+    }
+
+    .site-credit {
+        position: static;
+        transform: none;
+    }
+}
+</style>
