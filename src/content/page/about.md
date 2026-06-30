@@ -1,6 +1,6 @@
 ---
-title: Hakkında
-description: Kısa bir tanıtım.
+title: About
+description: A brief introduction.
 ---
 
 Merhaba, ben Yunus Cingözce.
